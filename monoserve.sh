@@ -19,7 +19,7 @@ DESC=monoserver
 MONOSERVER=$(which fastcgi-mono-server2)
 MONOSERVER_PID=$(ps auxf | grep fastcgi-mono-server2.exe | grep -v grep | awk '{print $2}')
 
-WEBAPPS="www.domain1.xyz:/:/var/www/domain1.xyz/,www.domain2.xyz:/:/var/www/domain2.xyz/"
+WEBAPPS="www.drusellers.com:/:/var/www/drusellers.com/"
 
 case "$1" in
         start)
