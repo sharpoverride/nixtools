@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+import sys
+import os
+import stat
+import time
+tomon = sys.stdin.readlines()
+command = " ".join(sys.argv[1:])
+if(command==""): raise Exception("No command given")
+curval = 0
+while True:
+    val = 0
+    for monitor in tomon:
+        monitor = monitor.strip()
+        stats = os.stat (monitor)
+        val += stats [stat.ST_SIZE] + stats [stat.ST_MTIME]
+    if curval != val:
+        os.system(command)
+    curval = val
+    time.sleep(2)
