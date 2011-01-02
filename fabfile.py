@@ -19,14 +19,16 @@ def install_mono():
 	sudo('aptitude install -y mono-fastcgi-server2', pty=True)
 	put('mono-default', '/etc/nginx/sites-available/fluent', pty=True)
 	put('monoserve.sh', '/etc/init.d/monoserve.sh', pty=True)
-	sudo('ln -s /etc/nginx/sites-available/fluent /etc/nginx/sites-enabled/flunt', pty=True)
+	sudo('ln -s /etc/nginx/sites-available/fluent /etc/nginx/sites-enabled/fluent', pty=True)
 	sudo('/etc/init.d/monoserve start', pty=True)
 	sudo('/etc/init.d/nginx restart', pty=True)
 
 def sync_site():
 	sudo('mkdir /var/www/fluent')
-	#chown?
-	local('rsync -av ~/development/fluent %s@%s:/var/www/fluent' %(env.user, env.hosts[0]))
+	sudo('chown -R drusellers:drusellers /var/www/fluent')
+	local('rsync -avz ~/development/fluent %s@%s:/var/www/fluent' %(env.user, env.hosts[0]))
+        sudo('chmod -R 770 /var/www/fluent')
+        sudo('chmod -R o+r,o+x /var/www/fluent')
 	
 
 
@@ -37,4 +39,4 @@ def sync_site():
 ## fluent
 ## postgres
 ## rabbit
-
+#set up log files
