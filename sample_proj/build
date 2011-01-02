@@ -1,0 +1,30 @@
+#!/bin/bash
+
+NAME=`basename $(pwd)`
+
+CORE=./bin/$NAME.dll
+TEST=./bin/$NAME.specs.dll
+
+find lib -name '*.dll' > refs
+ref=`paste -sd, refs`
+rm refs
+
+dmcs -out:$CORE -target:library -r:$ref  ./src/**/*.cs ./src/*.cs
+
+#now build the tests
+xunit=./tools/xunit-1/xunit.dll
+dmcs -out:$TEST -target:library -r:$ref,$CORE,$xunit ./specs/*.cs ./src/**/*.cs
+
+
+find ./lib/ -iname '*.dll' -exec cp \{\} bin/ \;
+cp ./tools/xunit-1/xunit.dll ./bin
+
+#now run the tests
+
+mono ./tools/xunit-1/xunit.console.exe $TEST ./tools/xunit-1/xunit.console.exe.config /silent /html bob.html
+
+
+rm -R www && mkdir -p www/bin/
+cp ./bin/*.dll ./www/bin/
+cp -r src/ www/
+find www/ -iname *.cs -exec rm {} \;
