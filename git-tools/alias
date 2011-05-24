@@ -1,0 +1,21 @@
+git config alias.ds "diff --stat"
+alias.svn-up = !git svn fetch &&
+alias.di = diff --cached
+alias.new log master..
+alias.rbc = rebase --continue
+
+git help rev-parse
+
+keep master clean.
+- push and pull to master only!
+
+git checkout -b <name>
+?alias.br <name>
+
+git branch --merged #shows you branches that have been merged in and need cleaning
+
+git stash
+---------
+odd, maybe later.
+
+

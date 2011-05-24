@@ -16,8 +16,8 @@ DAEMON=/usr/local/bin/mono
 NAME=monoserver
 DESC=monoserver
 
-MONOSERVER=$(which fastcgi-mono-server2)
-MONOSERVER_PID=$(ps auxf | grep fastcgi-mono-server2.exe | grep -v grep | awk '{print $2}')
+MONOSERVER=$(which fastcgi-mono-server4)
+MONOSERVER_PID=$(ps auxf | grep fastcgi-mono-server4.exe | grep -v grep | awk '{print $2}')
 
 WEBAPPS="www.drusellers.com:/:/var/www/drusellers.com/"
 
