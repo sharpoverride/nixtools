@@ -1,0 +1,11 @@
+server {
+    listen 80 default;
+	server_name localhost;
+	location / {
+		root /var/www/aspnetapp;
+		index index.html index.htm default.aspx Default.aspx;
+		fastcgi_index Default.aspx;
+		fastcgi_pass 127.0.0.1:9000;
+		include /etc/nginx/fastcgi_params;
+	}
+ }
