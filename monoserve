@@ -12,14 +12,14 @@
 #http://tomi.developmententity.sk/Blog/Post/2
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/local/bin/mono
+DAEMON=/opt/mono-2.10/bin/mono
 NAME=monoserver
 DESC=monoserver
 
 MONOSERVER=$(which fastcgi-mono-server4)
 MONOSERVER_PID=$(ps auxf | grep fastcgi-mono-server4.exe | grep -v grep | awk '{print $2}')
 
-WEBAPPS="www.drusellers.com:/:/var/www/aspnetapp/"
+WEBAPPS="localhost:/:/var/www/aspnetapp/"
 
 case "$1" in
         start)
